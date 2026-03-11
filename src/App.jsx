@@ -8,7 +8,7 @@ const C = {
 };
 const FONT = "'Futura','Century Gothic','Trebuchet MS',sans-serif";
 
-// ── ALL SVG ICONS ─────────────────────────────────────────────────────────────
+// â”€â”€ ALL SVG ICONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const ICONS = {
 
   "doors": (s) => (
@@ -223,7 +223,7 @@ const ICONS = {
 
   "stone-lamps": (s) => (
     <svg width={s} height={s} viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
-      {/* Wall surround — same proportions as other icons */}
+      {/* Wall surround â€” same proportions as other icons */}
       <rect x="2" y="2" width="28" height="28" rx="1" strokeWidth="1.8"/>
       {/* Thick side pilasters */}
       <line x1="7" y1="2" x2="7" y2="30" strokeWidth="1.4"/>
@@ -280,7 +280,7 @@ const ICONS = {
   ),
 };
 
-// Universal icon renderer — all categories use SVG now
+// Universal icon renderer â€” all categories use SVG now
 function CatIcon({icon, size=20, color="currentColor"}) {
   try {
     const fn = ICONS[icon];
@@ -314,9 +314,9 @@ const uid = () => Math.random().toString(36).slice(2,9);
 function load(k,fb){try{return JSON.parse(localStorage.getItem(k))??fb}catch{return fb}}
 function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}
 
-// ── BACKUP SYSTEM ─────────────────────────────────────────────────────────────
+// â”€â”€ BACKUP SYSTEM â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Keeps 3 rolling backups under keys hi_backup_0/1/2 with timestamps
-// Backups are NEVER touched by app updates — separate keys from live data
+// Backups are NEVER touched by app updates â€” separate keys from live data
 const BACKUP_COUNT = 3;
 function saveBackup(items){
   try{
@@ -339,7 +339,7 @@ function loadBackups(){
   return out.sort((a,b)=>b.ts.localeCompare(a.ts));
 }
 
-function dimStr(v){if(!v||(!v.ft&&!v.in))return"—";return`${v.ft||0}′ ${v.in||0}″`}
+function dimStr(v){if(!v||(!v.ft&&!v.in))return"â€”";return`${v.ft||0}â€² ${v.in||0}â€³`}
 
 function FtInInput({label,value,onChange}){
   const ft=value?.ft??"",inch=value?.in??"";
@@ -422,7 +422,7 @@ function PhotoAnnotator({photoUrl,pins,onChange}){
           border:`1.5px solid ${C.accent}`,borderRadius:10,
           background:adding?C.accent:C.white,color:adding?C.white:C.accent,
           fontSize:13,fontFamily:FONT,fontWeight:600,cursor:"pointer"}}>
-          {adding?"Tap photo to pin…":"+ Add Label Pin"}
+          {adding?"Tap photo to pinâ€¦":"+ Add Label Pin"}
         </button>
         {pins.length>0&&(
           <button onClick={()=>onChange([])} style={{padding:"10px 14px",border:`1.5px solid ${C.line}`,
@@ -450,7 +450,7 @@ function PhotoAnnotator({photoUrl,pins,onChange}){
                   onClick={()=>setEditId(pin.id)}>{pin.label}</span>
               )}
               <button onClick={()=>onChange(pins.filter(p=>p.id!==pin.id))}
-                style={{background:"none",border:"none",color:C.textSoft,cursor:"pointer",fontSize:18,padding:"0 4px"}}>×</button>
+                style={{background:"none",border:"none",color:C.textSoft,cursor:"pointer",fontSize:18,padding:"0 4px"}}>Ã—</button>
             </div>
           ))}
         </div>
@@ -463,7 +463,7 @@ function PhotoAnnotator({photoUrl,pins,onChange}){
             <div style={{fontSize:14,fontFamily:FONT,fontWeight:600,color:C.text,marginBottom:14}}>Name this part</div>
             <input autoFocus value={labelInput} onChange={e=>setLabelInput(e.target.value)}
               onKeyDown={e=>{if(e.key==="Enter")confirmPin();}}
-              placeholder="e.g. Top Rail, Keystone…"
+              placeholder="e.g. Top Rail, Keystoneâ€¦"
               style={{width:"100%",padding:"11px 14px",border:`1.5px solid ${C.line}`,
                 borderRadius:10,fontFamily:FONT,fontSize:14,outline:"none",
                 boxSizing:"border-box",marginBottom:14}}/>
@@ -486,7 +486,7 @@ function ItemForm({category,item,itemNumber,onSave,onCancel}){
   const fileRef=useRef(),videoRef=useRef(),canvasRef=useRef();
   const [stream,setStream]=useState(null);
   const [showCam,setShowCam]=useState(false);
-  const [name,setName]=useState(item?.name??`${category.label} — ${String(itemNumber).padStart(2,"0")}`);
+  const [name,setName]=useState(item?.name??`${category.label} â€” ${String(itemNumber).padStart(2,"0")}`);
   const [pieces,setPieces]=useState(item?.pieces??1);
   const [condition,setCondition]=useState(item?.condition??"");
   const [notes,setNotes]=useState(item?.notes??"");
@@ -525,7 +525,7 @@ function ItemForm({category,item,itemNumber,onSave,onCancel}){
         position:"sticky",top:0,zIndex:20,display:"flex",alignItems:"center",gap:12}}>
         <button onClick={onCancel} style={{background:"none",border:`1.5px solid ${C.line}`,
           borderRadius:8,padding:"6px 12px",fontSize:13,fontFamily:FONT,color:C.textMid,cursor:"pointer"}}>
-          ← Back
+          â† Back
         </button>
         <div style={{flex:1}}>
           <div style={{fontSize:11,color:C.textSoft,fontFamily:FONT,textTransform:"uppercase",letterSpacing:1}}>
@@ -555,7 +555,7 @@ function ItemForm({category,item,itemNumber,onSave,onCancel}){
             <div style={{display:"flex",alignItems:"center",gap:6}}>
               <button onClick={()=>setPieces(p=>Math.max(1,p-1))}
                 style={{width:34,height:42,border:`1.5px solid ${C.line}`,borderRadius:8,
-                  background:C.white,fontSize:18,cursor:"pointer",color:C.textMid,fontFamily:FONT}}>−</button>
+                  background:C.white,fontSize:18,cursor:"pointer",color:C.textMid,fontFamily:FONT}}>âˆ’</button>
               <div style={{width:40,height:42,border:`1.5px solid ${C.line}`,borderRadius:8,
                 background:C.white,display:"flex",alignItems:"center",justifyContent:"center",
                 fontSize:16,fontWeight:700,color:C.text,fontFamily:FONT}}>{pieces}</div>
@@ -574,13 +574,13 @@ function ItemForm({category,item,itemNumber,onSave,onCancel}){
               <button onClick={openCamera} style={{flex:1,padding:"22px 10px",border:`2px dashed ${C.line}`,
                 borderRadius:12,background:C.ivoryDeep,cursor:"pointer",
                 display:"flex",flexDirection:"column",alignItems:"center",gap:6}}>
-                <span style={{fontSize:28}}>📷</span>
+                <span style={{fontSize:28}}>ðŸ“·</span>
                 <span style={{fontSize:12,fontFamily:FONT,color:C.textMid}}>Camera</span>
               </button>
               <button onClick={()=>fileRef.current?.click()} style={{flex:1,padding:"22px 10px",border:`2px dashed ${C.line}`,
                 borderRadius:12,background:C.ivoryDeep,cursor:"pointer",
                 display:"flex",flexDirection:"column",alignItems:"center",gap:6}}>
-                <span style={{fontSize:28}}>🖼️</span>
+                <span style={{fontSize:28}}>ðŸ–¼ï¸</span>
                 <span style={{fontSize:12,fontFamily:FONT,color:C.textMid}}>Upload</span>
               </button>
             </div>
@@ -590,7 +590,7 @@ function ItemForm({category,item,itemNumber,onSave,onCancel}){
               <button onClick={()=>{setPhoto(null);setPins([]);}}
                 style={{marginTop:8,padding:"7px 14px",border:`1.5px solid ${C.line}`,
                   borderRadius:8,background:C.white,color:C.textSoft,fontSize:12,fontFamily:FONT,cursor:"pointer"}}>
-                × Remove Photo
+                Ã— Remove Photo
               </button>
             </div>
           )}
@@ -627,7 +627,7 @@ function ItemForm({category,item,itemNumber,onSave,onCancel}){
         <div>
           <label style={lbl}>Notes</label>
           <textarea value={notes} onChange={e=>setNotes(e.target.value)} rows={3}
-            placeholder="Materials, damage, observations…"
+            placeholder="Materials, damage, observationsâ€¦"
             style={{...inp,resize:"vertical",lineHeight:1.6}}/>
         </div>
 
@@ -646,9 +646,9 @@ function ItemForm({category,item,itemNumber,onSave,onCancel}){
           <video ref={videoRef} autoPlay playsInline style={{width:"100%",maxWidth:500,borderRadius:12}}/>
           <div style={{display:"flex",gap:20}}>
             <button onClick={snap} style={{width:72,height:72,borderRadius:"50%",background:C.white,
-              border:`4px solid ${C.accent}`,fontSize:28,cursor:"pointer"}}>📸</button>
+              border:`4px solid ${C.accent}`,fontSize:28,cursor:"pointer"}}>ðŸ“¸</button>
             <button onClick={closeCamera} style={{width:72,height:72,borderRadius:"50%",background:"#333",
-              border:"none",color:C.white,fontSize:24,cursor:"pointer"}}>✕</button>
+              border:"none",color:C.white,fontSize:24,cursor:"pointer"}}>âœ•</button>
           </div>
         </div>
       )}
@@ -663,7 +663,7 @@ function CategoryScreen({category,items,onAdd,onEdit,onBack}){
         display:"flex",alignItems:"center",gap:12,flexShrink:0}}>
         <button onClick={onBack} style={{background:"none",border:`1.5px solid ${C.line}`,
           borderRadius:8,padding:"6px 12px",fontSize:13,fontFamily:FONT,color:C.textMid,cursor:"pointer"}}>
-          ← Back
+          â† Back
         </button>
         <div style={{flex:1}}>
           <div style={{fontSize:18,fontFamily:FONT,fontWeight:700,color:C.text}}>
@@ -703,7 +703,7 @@ function CategoryScreen({category,items,onAdd,onEdit,onBack}){
                   <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}>
                     <div style={{fontSize:15,fontFamily:FONT,fontWeight:700,color:C.text}}>{item.name}</div>
                     <div style={{background:C.accentLight,color:C.accent,borderRadius:8,
-                      padding:"2px 10px",fontSize:12,fontFamily:FONT,fontWeight:600}}>× {item.pieces}</div>
+                      padding:"2px 10px",fontSize:12,fontFamily:FONT,fontWeight:600}}>Ã— {item.pieces}</div>
                   </div>
                   <div style={{display:"flex",gap:14,marginBottom:6}}>
                     {["H","W","D"].map(k=>(
@@ -740,7 +740,7 @@ function generatePDF(allItems,categories,projectName){
   // Cover page + one page per category (2 items per row, compact cards)
   let body="";
 
-  // ── COVER PAGE ──
+  // â”€â”€ COVER PAGE â”€â”€
   const totalItems=cats.reduce((s,c)=>s+allItems[c.id].length,0);
   const totalPieces=cats.reduce((s,c)=>allItems[c.id].reduce((ss,i)=>ss+(i.pieces||1),ss),0);
   body+=`<div class="cover">
@@ -753,11 +753,11 @@ function generatePDF(allItems,categories,projectName){
       ${cats.map(c=>`<div class="cs-row"><span>${({"doors":"[D]","door-frames":"[DF]","windows":"[W]","window-frames":"[WF]","stone-arches":"[A]","columns":"[C]","beams":"[B]","jarokhas":"[J]","furniture":"[F]","stone-lamps":"[SL]","metal-lamps":"[ML]"}[c.icon]||c.icon)} ${c.label}</span><span class="cs-n">${allItems[c.id].length} item${allItems[c.id].length>1?"s":""}</span></div>`).join("")}
     </div>
     <div class="cover-footer">
-      <span>${totalItems} elements &nbsp;·&nbsp; ${totalPieces} pieces &nbsp;·&nbsp; ${cats.length} categories</span>
+      <span>${totalItems} elements &nbsp;Â·&nbsp; ${totalPieces} pieces &nbsp;Â·&nbsp; ${cats.length} categories</span>
     </div>
   </div>`;
 
-  // ── ONE PAGE PER CATEGORY ──
+  // â”€â”€ ONE PAGE PER CATEGORY â”€â”€
   cats.forEach(cat=>{
     const items=allItems[cat.id];
     // chunk into rows of 2
@@ -767,7 +767,7 @@ function generatePDF(allItems,categories,projectName){
     body+=`<div class="cat-page">
       <div class="cat-header">
         <div class="cat-title">${({"doors":"[D]","door-frames":"[DF]","windows":"[W]","window-frames":"[WF]","stone-arches":"[A]","columns":"[C]","beams":"[B]","jarokhas":"[J]","furniture":"[F]","stone-lamps":"[SL]","metal-lamps":"[ML]"}[cat.icon]||cat.icon)} ${cat.label}</div>
-        <div class="cat-meta">${items.length} element${items.length>1?"s":""} &nbsp;·&nbsp; ${projectName||"Architectural Survey"}</div>
+        <div class="cat-meta">${items.length} element${items.length>1?"s":""} &nbsp;Â·&nbsp; ${projectName||"Architectural Survey"}</div>
       </div>
       ${rows.map(row=>`
         <div class="item-row">
@@ -777,7 +777,7 @@ function generatePDF(allItems,categories,projectName){
               <div class="ic-head">
                 <div class="ic-name">${item.name}</div>
                 <div class="ic-badges">
-                  <span class="badge-pieces">×${item.pieces}</span>
+                  <span class="badge-pieces">Ã—${item.pieces}</span>
                   ${item.condition?`<span class="badge-cond" style="color:${COND_COLOR[item.condition]};border-color:${COND_COLOR[item.condition]}44;background:${COND_COLOR[item.condition]}11">${item.condition}</span>`:""}
                 </div>
               </div>
@@ -881,13 +881,13 @@ function generatePDF(allItems,categories,projectName){
 
 function HomeScreen({categories,allItems,onCategoryTap,totalCount,onAddCategory,onDeleteCategory}){
   const [showAdd,setShowAdd]=useState(false);
-  const [newIcon,setNewIcon]=useState("🏛️");
+  const [newIcon,setNewIcon]=useState("ðŸ›ï¸");
   const [newLabel,setNewLabel]=useState("");
 
   const confirmAdd=()=>{
     if(!newLabel.trim())return;
     onAddCategory({id:newLabel.toLowerCase().replace(/\s+/g,"-")+"-"+Math.random().toString(36).slice(2,6),icon:newIcon,label:newLabel.trim()});
-    setNewLabel("");setNewIcon("🏛️");setShowAdd(false);
+    setNewLabel("");setNewIcon("ðŸ›ï¸");setShowAdd(false);
   };
 
   return(
@@ -941,7 +941,7 @@ function HomeScreen({categories,allItems,onCategoryTap,totalCount,onAddCategory,
                   <button onClick={e=>{e.stopPropagation();if(confirm(`Delete "${cat.label}"?`))onDeleteCategory(cat.id);}}
                     style={{position:"absolute",top:-6,right:-6,width:18,height:18,borderRadius:"50%",
                       background:"#cc0000",color:"#fff",border:"none",fontSize:11,cursor:"pointer",
-                      display:"flex",alignItems:"center",justifyContent:"center",lineHeight:1,zIndex:5}}>×</button>
+                      display:"flex",alignItems:"center",justifyContent:"center",lineHeight:1,zIndex:5}}>Ã—</button>
                 )}
               </div>
             );
@@ -963,12 +963,12 @@ function HomeScreen({categories,allItems,onCategoryTap,totalCount,onAddCategory,
                   fontSize:20,textAlign:"center",outline:"none"}}/>
               <input autoFocus value={newLabel} onChange={e=>setNewLabel(e.target.value)}
                 onKeyDown={e=>{if(e.key==="Enter")confirmAdd();}}
-                placeholder="Category name…"
+                placeholder="Category nameâ€¦"
                 style={{flex:1,padding:"10px 14px",border:`1.5px solid ${C.line}`,borderRadius:10,
                   fontFamily:FONT,fontSize:14,color:C.text,outline:"none"}}/>
             </div>
             <div style={{fontSize:11,fontFamily:FONT,color:C.textSoft,marginBottom:16}}>
-              Tip: paste any emoji into the icon box 👆
+              Tip: paste any emoji into the icon box ðŸ‘†
             </div>
             <div style={{display:"flex",gap:8}}>
               <button onClick={()=>setShowAdd(false)} style={{flex:1,padding:"11px",
@@ -992,15 +992,15 @@ function RecordsScreen({categories,allItems,onEdit}){
   return(
     <div style={{flex:1,overflowY:"auto",padding:"14px 16px",background:C.ivory}}>
       <div style={{position:"relative",marginBottom:14}}>
-        <span style={{position:"absolute",left:12,top:"50%",transform:"translateY(-50%)"}}>🔍</span>
-        <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search elements…"
+        <span style={{position:"absolute",left:12,top:"50%",transform:"translateY(-50%)"}}>ðŸ”</span>
+        <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search elementsâ€¦"
           style={{width:"100%",padding:"11px 14px 11px 36px",border:`1.5px solid ${C.line}`,
             borderRadius:10,fontSize:14,fontFamily:FONT,color:C.text,
             background:C.white,outline:"none",boxSizing:"border-box"}}/>
       </div>
       {filtered.length===0?(
         <div style={{textAlign:"center",padding:"60px 20px",color:C.textSoft}}>
-          <div style={{fontSize:40,marginBottom:12}}>🏛️</div>
+          <div style={{fontSize:40,marginBottom:12}}>ðŸ›ï¸</div>
           <div style={{fontSize:15,fontFamily:FONT}}>No elements yet</div>
           <div style={{fontSize:13,fontFamily:FONT,marginTop:6}}>Go to Home and tap a category</div>
         </div>
@@ -1022,7 +1022,7 @@ function RecordsScreen({categories,allItems,onEdit}){
                   <div style={{fontSize:14,fontFamily:FONT,fontWeight:700,color:C.text,
                     whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{item.name}</div>
                   <div style={{fontSize:12,fontFamily:FONT,color:C.textSoft,marginTop:3}}>
-                    {dimStr(item.dims?.H)} × {dimStr(item.dims?.W)} &nbsp;·&nbsp; ×{item.pieces}
+                    {dimStr(item.dims?.H)} Ã— {dimStr(item.dims?.W)} &nbsp;Â·&nbsp; Ã—{item.pieces}
                   </div>
                 </div>
                 <div style={{padding:"10px 10px 10px 0",display:"flex",alignItems:"center"}}>
@@ -1043,7 +1043,7 @@ function RecordsScreen({categories,allItems,onEdit}){
   );
 }
 
-// ── BACKUP PANEL ─────────────────────────────────────────────────────────────
+// â”€â”€ BACKUP PANEL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function BackupPanel({allItems, setAllItems}){
   const [backups, setBackups] = useState(()=>loadBackups());
   const [expanded, setExpanded] = useState(false);
@@ -1084,7 +1084,7 @@ function BackupPanel({allItems, setAllItems}){
       {restored&&(
         <div style={{marginTop:10,padding:"8px 12px",background:"#e8f5e9",borderRadius:8,
           fontSize:12,fontFamily:FONT,color:C.good,fontWeight:600}}>
-          ✓ Data restored successfully! Go to Home to see your elements.
+          âœ“ Data restored successfully! Go to Home to see your elements.
         </div>
       )}
 
@@ -1121,8 +1121,8 @@ function BackupPanel({allItems, setAllItems}){
   );
 }
 
-// ── ONEDRIVE EXPORT (no Azure needed) ────────────────────────────────────────
-// Downloads each element as a .json file — user manually moves to OneDrive
+// â”€â”€ ONEDRIVE EXPORT (no Azure needed) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Downloads each element as a .json file â€” user manually moves to OneDrive
 // OR user pastes a OneDrive "upload" folder URL (Business/SharePoint only)
 
 function downloadJSON(filename, obj){
@@ -1227,15 +1227,15 @@ function ExportScreen({categories,allItems,setAllItems,projectName,setProjectNam
           cursor:total===0?"not-allowed":"pointer",
           display:"flex",alignItems:"center",justifyContent:"center",gap:10,marginBottom:8,
           opacity:total===0?0.6:1}}>
-        <span style={{fontSize:20}}>📄</span> Export PDF Report
+        <span style={{fontSize:20}}>ðŸ“„</span> Export PDF Report
       </button>
       <div style={{fontSize:11,fontFamily:FONT,color:C.textSoft,textAlign:"center",marginBottom:16}}>
-        {total===0 ? "Add elements first to export" : "Opens in new tab · Print or Save as PDF"}
+        {total===0 ? "Add elements first to export" : "Opens in new tab Â· Print or Save as PDF"}
       </div>
 
-      {/* OneDrive — download JSON files */}
+      {/* OneDrive â€” download JSON files */}
       <div style={card}>
-        <div style={lbl}>☁️ Save to OneDrive</div>
+        <div style={lbl}>â˜ï¸ Save to OneDrive</div>
 
         <div style={{fontSize:12,fontFamily:FONT,color:C.textMid,marginBottom:14,lineHeight:1.7}}>
           Downloads each element as a <strong>.json file</strong>. Move them to your OneDrive folder to back up your survey data.
@@ -1245,7 +1245,7 @@ function ExportScreen({categories,allItems,setAllItems,projectName,setProjectNam
         {[
           {n:"1", t:"Tap "Download All Files" below"},
           {n:"2", t:"Files save to your phone's Downloads folder"},
-          {n:"3", t:"Open OneDrive app → upload the files to your survey folder"},
+          {n:"3", t:"Open OneDrive app â†’ upload the files to your survey folder"},
         ].map(s=>(
           <div key={s.n} style={{display:"flex",gap:10,alignItems:"flex-start",marginBottom:10}}>
             <div style={{width:22,height:22,borderRadius:"50%",background:C.accent,color:C.white,
@@ -1266,7 +1266,7 @@ function ExportScreen({categories,allItems,setAllItems,projectName,setProjectNam
               cursor:total===0?"not-allowed":"pointer",
               display:"flex",alignItems:"center",justifyContent:"center",gap:10,
               opacity:total===0?0.6:1}}>
-            <span style={{fontSize:18}}>⬇️</span>
+            <span style={{fontSize:18}}>â¬‡ï¸</span>
             {total===0 ? "No elements yet" : `Download All ${total} Files`}
           </button>
         )}
@@ -1275,7 +1275,7 @@ function ExportScreen({categories,allItems,setAllItems,projectName,setProjectNam
         {dlStatus==="running"&&(
           <>
             <div style={{display:"flex",justifyContent:"space-between",marginBottom:8}}>
-              <div style={{fontSize:13,fontFamily:FONT,color:C.textMid}}>Downloading…</div>
+              <div style={{fontSize:13,fontFamily:FONT,color:C.textMid}}>Downloadingâ€¦</div>
               <div style={{fontSize:13,fontFamily:FONT,fontWeight:700,color:C.accent}}>{dlCount}/{dlTotal}</div>
             </div>
             <div style={{height:6,background:C.line,borderRadius:3,overflow:"hidden"}}>
@@ -1292,7 +1292,7 @@ function ExportScreen({categories,allItems,setAllItems,projectName,setProjectNam
         {dlStatus==="done"&&(
           <>
             <div style={{fontSize:14,fontFamily:FONT,fontWeight:700,color:C.good,marginBottom:6}}>
-              ✓ All {dlTotal} files downloaded!
+              âœ“ All {dlTotal} files downloaded!
             </div>
             <div style={{fontSize:12,fontFamily:FONT,color:C.textMid,marginBottom:12,lineHeight:1.6}}>
               Go to your <strong>Downloads</strong> folder and move them to <strong>OneDrive</strong>.
@@ -1333,7 +1333,7 @@ function ExportScreen({categories,allItems,setAllItems,projectName,setProjectNam
 }
 
 function BottomNav({active,onChange}){
-  const tabs=[{id:"home",icon:"⊞",label:"Home"},{id:"records",icon:"☰",label:"Records"},{id:"export",icon:"↑",label:"Export"}];
+  const tabs=[{id:"home",icon:"âŠž",label:"Home"},{id:"records",icon:"â˜°",label:"Records"},{id:"export",icon:"â†‘",label:"Export"}];
   return(
     <div style={{display:"flex",borderTop:`1px solid ${C.line}`,background:C.white,
       flexShrink:0,paddingBottom:"env(safe-area-inset-bottom,0px)"}}>
@@ -1419,7 +1419,7 @@ export default function App(){
 
 function Shell({children}){
   useEffect(()=>{
-    // Force full width — override any cached styles
+    // Force full width â€” override any cached styles
     const s = document.createElement('style');
     s.id = 'arch-global';
     s.textContent = `
